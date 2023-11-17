@@ -74,3 +74,30 @@ export const TAG_LIST = [
   { id: 5, tag: '주간랭킹' },
   { id: 6, tag: 'BEST' },
 ];
+
+export const empty = (mixed_var: any) => {
+  let key;
+  if (
+    mixed_var === '' ||
+    mixed_var === 0 ||
+    mixed_var === '0' ||
+    mixed_var === null ||
+    mixed_var === false ||
+    (typeof mixed_var === 'number' && isNaN(mixed_var)) ||
+    typeof mixed_var === 'undefined'
+  ) {
+    return true;
+  }
+  if (mixed_var instanceof Date) {
+    return false;
+  }
+  if (typeof mixed_var == 'object') {
+    for (key in mixed_var) {
+      if (mixed_var.hasOwnProperty(key)) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return false;
+};
