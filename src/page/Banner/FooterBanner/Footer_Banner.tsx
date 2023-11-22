@@ -1,10 +1,23 @@
-import {View} from 'react-native';
+import React from 'react';
+import FirstTextContainer from './component/FirstTextContainer';
+import FooterMenuContainer from './component/FooterMenuContainer';
+import IntroduceContainer from './component/IntroduceContainer';
+import PhoneBoxContainer from './component/PhoneBoxContainer';
+import {
+  FooterBannerContainerCSS,
+  FooterContainContainerCSS,
+} from './styled/FooterBannerStyled';
 
 const FooterBanner = () => {
   return (
-    <>
-      <View></View>
-    </>
+    <FooterBannerContainerCSS>
+      <FooterContainContainerCSS>
+        <FirstTextContainer />
+        <PhoneBoxContainer />
+        <FooterMenuContainer />
+        <IntroduceContainer />
+      </FooterContainContainerCSS>
+    </FooterBannerContainerCSS>
   );
 };
 

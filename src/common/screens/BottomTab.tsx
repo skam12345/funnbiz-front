@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, View } from 'react-native';
+import SearchScreen from '../../page/Search/Search_Screen';
 import { BottomIconCSS, Contaniner, TextCSS } from './styled/BottomTabStyle';
 
 export const Home = () => {
@@ -20,11 +21,7 @@ export const Area = () => {
 
 export const Searching = () => {
   console.log('Searching');
-  return (
-    <Contaniner>
-      <TextCSS>검색 페이지 이동</TextCSS>
-    </Contaniner>
-  );
+  return <SearchScreen />;
 };
 
 export const Menu = () => {

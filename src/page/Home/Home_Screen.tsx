@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollContainer } from '../../common/styled/AppSyled';
 import EventBanner from '../Banner/EventBanner/Event_Banner';
+import FooterBanner from '../Banner/FooterBanner/Footer_Banner';
 import DailyGoods from '../Goods/DailyGoods/Daily_Goods';
 import NewGoods from '../Goods/NewGoods/New_Goods';
 import SpecialGoods from '../Goods/SpecialGoods/Special_Goods';
@@ -35,6 +36,7 @@ const HomeScreen = () => {
         <SpecialGoods />
         <NewGoods />
         <EventBanner />
+        <FooterBanner />
       </ScrollContainer>
       <FixedDisplay fixed={false} />
     </>

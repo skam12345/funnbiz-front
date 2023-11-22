@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   CategoryCntainerBoxCSS,
   CategoryCntainerEntCSS,
@@ -13,7 +14,7 @@ const CategoryContainer = () => {
     <>
       <CategoryCntainerBoxCSS>
         <CategoryCntainerEntCSS>
-          <CategoryCntainerTextCSS style={{color: 'white'}}>
+          <CategoryCntainerTextCSS style={{ color: 'white' }}>
             전체
           </CategoryCntainerTextCSS>
           <CategoryContainerIcon
@@ -23,12 +24,12 @@ const CategoryContainer = () => {
           />
         </CategoryCntainerEntCSS>
         <CategoryContainerFinishCSS>
-          <CategoryCntainerTextCSS style={{color: '#888888'}}>
+          <CategoryCntainerTextCSS style={{ color: '#888888' }}>
             땡처리
           </CategoryCntainerTextCSS>
         </CategoryContainerFinishCSS>
         <CategoryContainerPromotionCSS>
-          <CategoryCntainerTextCSS style={{color: '#888888'}}>
+          <CategoryCntainerTextCSS style={{ color: '#888888' }}>
             프로모션
           </CategoryCntainerTextCSS>
         </CategoryContainerPromotionCSS>

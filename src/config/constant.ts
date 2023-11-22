@@ -101,3 +101,5 @@ export const empty = (mixed_var: any) => {
   }
   return false;
 };
+
+export const FULL_EQUIRE_SCORE = 5.0;

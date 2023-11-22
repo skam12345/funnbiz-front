@@ -15,7 +15,7 @@ import {
   CustomBarButtonCSS,
   TouchOpacityCSS,
 } from '../../common/screens/styled/BottomTabStyle';
-import ScoreBarTest from '../../page/test/scoreBar/Score_Bar_Test';
+import HomeScreen from '../../page/Home/Home_Screen';
 const Tab = createBottomTabNavigator();
 
 // stack navigation
@@ -48,7 +48,7 @@ const MainNavigation = () => {
     <Tab.Navigator screenOptions={{ headerShown: headers.visibleTabHead }}>
       <Tab.Screen
         name="Home"
-        component={ScoreBarTest}
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabIcon focused={focused} imageName={'home'} />
