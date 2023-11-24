@@ -1,5 +1,5 @@
-import React, { useCallback, useContext, useEffect } from 'react';
-import { LayoutContext } from '../../../Store/context/AppHeaderContext';
+import React, { useContext, useEffect } from 'react';
+import { GuestContext } from '../../../Store/context/AppSearchGuestContext';
 import {
   TripGuestAgeTextCSS,
   TripGuestControlContainerCSS,
@@ -11,68 +11,68 @@ import {
 } from '../styled/TripGuestControlStyled';
 
 const TripGuestControl = () => {
-  const headers = useContext(LayoutContext);
+  const guest = useContext(GuestContext);
 
   useEffect(() => {
-    if (headers.adult == 0) {
-      headers.setAdultStyle({
+    changeAdultStyle();
+    changeChildStyle();
+  }, [guest.adult, guest.child]);
+
+  const changeAdultStyle = () => {
+    if (guest.adult == 0) {
+      guest.setAdultStyle({
         backgroundColor: 'grey',
       });
     } else {
-      headers.setAdultStyle({
+      guest.setAdultStyle({
         backgroundColor: '#6866F7',
       });
     }
-  }, [headers.adult]);
+  };
 
-  useEffect(() => {
-    if (headers.child == 0) {
-      headers.setChildStyle({
+  const changeChildStyle = () => {
+    if (guest.child == 0) {
+      guest.setChildStyle({
         backgroundColor: 'grey',
       });
     } else {
-      headers.setChildStyle({
+      guest.setChildStyle({
         backgroundColor: '#6866F7',
       });
     }
-  }, [headers.child]);
+  };
 
-  const onPlus = useCallback(
-    (key: string) => {
-      if (key === 'adult') {
-        if (headers.adult < 8) {
-          headers.setAdult(headers.adult + 1);
-        }
-      } else {
-        if (headers.child < 8) {
-          headers.setChild(headers.child + 1);
-        }
+  const onPlus = (key: string) => {
+    if (key === 'adult') {
+      if (guest.adult < 8) {
+        guest.setAdult(guest.adult + 1);
       }
-    },
-    [headers.adult, headers.child],
-  );
+    } else {
+      if (guest.child < 8) {
+        guest.setChild(guest.child + 1);
+      }
+    }
+  };
 
-  const onMinus = useCallback(
-    (key: string) => {
-      if (key === 'adult') {
-        if (headers.adult > 0) {
-          headers.setAdult(headers.adult - 1);
-        }
-      } else {
-        if (headers.child > 0) {
-          headers.setChild(headers.child - 1);
-        }
+  const onMinus = (key: string) => {
+    if (key === 'adult') {
+      if (guest.adult > 0) {
+        guest.setAdult(guest.adult - 1);
       }
-    },
-    [headers.adult, headers.child],
-  );
+    } else {
+      if (guest.child > 0) {
+        guest.setChild(guest.child - 1);
+      }
+    }
+  };
+
   return (
     <TripGuestControlTotalContainerCSS>
       <TripGuestControlContainerCSS>
         <TripGuestAgeTextCSS>성인</TripGuestAgeTextCSS>
         <TripGuestControlPartContainerCSS>
           <TripGuestControlPartButtonCSS
-            style={headers.adultStyle}
+            style={guest.adultStyle}
             onPress={() => onMinus('adult')}
           >
             <TripGuestControlPartButtenTextCSS>
@@ -80,7 +80,7 @@ const TripGuestControl = () => {
             </TripGuestControlPartButtenTextCSS>
           </TripGuestControlPartButtonCSS>
           <TripGuestControlPartButtonNumberCSS>
-            {headers.adult}
+            {guest.adult}
           </TripGuestControlPartButtonNumberCSS>
           <TripGuestControlPartButtonCSS
             style={{ backgroundColor: '#6866F7' }}
@@ -96,7 +96,7 @@ const TripGuestControl = () => {
         <TripGuestAgeTextCSS>아동</TripGuestAgeTextCSS>
         <TripGuestControlPartContainerCSS>
           <TripGuestControlPartButtonCSS
-            style={headers.childStyle}
+            style={guest.childStyle}
             onPress={() => onMinus('child')}
           >
             <TripGuestControlPartButtenTextCSS>
@@ -104,7 +104,7 @@ const TripGuestControl = () => {
             </TripGuestControlPartButtenTextCSS>
           </TripGuestControlPartButtonCSS>
           <TripGuestControlPartButtonNumberCSS>
-            {headers.child}
+            {guest.child}
           </TripGuestControlPartButtonNumberCSS>
           <TripGuestControlPartButtonCSS
             style={{ backgroundColor: '#6866F7' }}

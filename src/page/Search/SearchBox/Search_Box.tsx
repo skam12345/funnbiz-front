@@ -1,6 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
 import { LayoutContext } from '../../../Store/context/AppHeaderContext';
+import { CalendarContext } from '../../../Store/context/AppSearchCalendarContext';
+import { GuestContext } from '../../../Store/context/AppSearchGuestContext';
 import { empty } from '../../../config/constant';
 import { SearchBoxCSS } from './styled/SearchBoxStyled';
 import {
@@ -25,6 +27,8 @@ import {
 const SearchBox = () => {
   const navigation: any = useNavigation();
   const headers = useContext(LayoutContext);
+  const guest = useContext(GuestContext);
+  const calendar = useContext(CalendarContext);
   const goTripCalenderPage = () => {
     if (headers.visibleTabHead) {
       headers.setVisibleCalHead(true);
@@ -64,12 +68,12 @@ const SearchBox = () => {
                 color="black"
               />
               <SearchContentCalDateTextCSS>
-                {`${headers.checkIn} ~ ${headers.checkOut}`}
+                {`${calendar.checkIn} ~ ${calendar.checkOut}`}
               </SearchContentCalDateTextCSS>
             </SearchContentCalIconBoxCSS>
             <SearchContentCalTextBoxCSS>
               <SearchContentCalTextCSS>
-                {!empty(headers.night) ? `${headers.night}박` : '0박'}
+                {!empty(calendar.night) ? `${calendar.night}박` : '0박'}
               </SearchContentCalTextCSS>
             </SearchContentCalTextBoxCSS>
           </SearchContentCalBoxCSS>
@@ -80,7 +84,7 @@ const SearchBox = () => {
               color="black"
             />
             <SearchContentGuestTextCSS>
-              성인 {headers.adult}, 아동 {headers.child}
+              성인 {guest.adult}, 아동 {guest.child}
             </SearchContentGuestTextCSS>
           </SearchContentGuestBoxCSS>
         </SearchContentCalAndGuestBoxCSS>

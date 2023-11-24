@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext, useEffect } from 'react';
 import { LayoutContext } from '../../Store/context/AppHeaderContext';
+import { CalendarContext } from '../../Store/context/AppSearchCalendarContext';
 import { empty, weekendSet } from '../../config/constant';
 import {
   TripCalendarContianerCSS,
@@ -12,36 +13,40 @@ import {
 
 const TripCalendar = () => {
   const navigation = useNavigation();
+  const calendar = useContext(CalendarContext);
   const headers = useContext(LayoutContext);
   useEffect(() => {
-    if (!empty(headers.success)) {
-      headers.setSuccess(false);
-      headers.setStartDate('');
-      headers.setEndDate('');
-      headers.setStartDay('');
-      headers.setEndDay('');
-      headers.setCheckIn('');
-      headers.setCheckOut('');
-      headers.setMarked(weekendSet);
-      headers.setObjectItem(weekendSet);
+    initialize();
+  }, [calendar.success]);
+  const initialize = () => {
+    if (!empty(calendar.success)) {
+      calendar.setSuccess(false);
+      calendar.setStartDate('');
+      calendar.setEndDate('');
+      calendar.setStartDay('');
+      calendar.setEndDay('');
+      calendar.setCheckIn('');
+      calendar.setCheckOut('');
+      calendar.setMarked(weekendSet);
+      calendar.setObjectItem(weekendSet);
     }
-  }, [headers.success]);
+  };
   const putSelectedItem = (key: string, day: any) => {
-    let marking = headers.objectItem;
+    let marking = calendar.objectItem;
     marking[day?.dateString] = {
       [key === 'start' ? 'startingDay' : 'endingDay']: true,
       color: 'blue',
       textColor: 'white',
     };
-    headers.setObjectItem(marking);
-    if (key === 'start') headers.setMarked(headers.objectItem);
+    calendar.setObjectItem(marking);
+    if (key === 'start') calendar.setMarked(calendar.objectItem);
   };
 
   const putAutoRange = (day: any) => {
-    let curDate = new Date(headers.startDate);
+    let curDate = new Date(calendar.startDate);
     let count = 0;
     curDate.setDate(curDate.getDate() + 1);
-    let item = headers.objectItem;
+    let item = calendar.objectItem;
     while (curDate < new Date(day?.dateString)) {
       item[curDate.toISOString().split('T')[0]] = {
         color: '#6C74FF',
@@ -50,84 +55,90 @@ const TripCalendar = () => {
       curDate.setDate(curDate.getDate() + 1);
       count++;
     }
-    headers.setNight(count + 1);
-    headers.setObjectItem(item);
-    headers.setMarked(headers.objectItem);
+    calendar.setNight(count + 1);
+    calendar.setObjectItem(item);
+    calendar.setMarked(calendar.objectItem);
+  };
+
+  const setDay = (curDate: Date, key: string) => {
+    if (key === 'start') {
+      switch (curDate.getDay()) {
+        case 0:
+          calendar.setStartDay('일');
+          break;
+        case 1:
+          calendar.setStartDay('월');
+          break;
+        case 2:
+          calendar.setStartDay('화');
+          break;
+        case 3:
+          calendar.setStartDay('수');
+          break;
+        case 4:
+          calendar.setStartDay('목');
+          break;
+        case 5:
+          calendar.setStartDay('금');
+          break;
+        default:
+          calendar.setStartDay('토');
+      }
+    } else if (key === 'end') {
+      switch (curDate.getDay()) {
+        case 0:
+          calendar.setEndDay('일');
+          break;
+        case 1:
+          calendar.setEndDay('월');
+          break;
+        case 2:
+          calendar.setEndDay('화');
+          break;
+        case 3:
+          calendar.setEndDay('수');
+          break;
+        case 4:
+          calendar.setEndDay('목');
+          break;
+        case 5:
+          calendar.setEndDay('금');
+          break;
+        default:
+          calendar.setEndDay('토');
+      }
+    }
+  };
+
+  const settingDate = (day: any) => {
+    return day.month < 10
+      ? '0' + day.month + (day.day < 10 ? '.0' + day.day : day.day)
+      : day.month + '.' + day.day;
   };
 
   const selectRangCallback = (day: any) => {
-    if (empty(headers.startDate)) {
-      headers.setStartDate(day?.dateString);
-      headers.setCheckIn(
-        day.month < 10
-          ? '0' + day.month + (day.day < 10 ? '.0' + day.day : day.day)
-          : day.month + '.' + day.day,
-      );
+    if (empty(calendar.startDate)) {
+      calendar.setStartDate(day?.dateString);
+      calendar.setCheckIn(settingDate(day));
       putSelectedItem('start', day);
       let curDate = new Date(day?.dateString);
-      switch (curDate.getDay()) {
-        case 0:
-          headers.setStartDay('일');
-          break;
-        case 1:
-          headers.setStartDay('월');
-          break;
-        case 2:
-          headers.setStartDay('화');
-          break;
-        case 3:
-          headers.setStartDay('수');
-          break;
-        case 4:
-          headers.setStartDay('목');
-          break;
-        case 5:
-          headers.setStartDay('금');
-          break;
-        default:
-          headers.setStartDay('토');
-      }
+      setDay(curDate, 'start');
       curDate.setDate(curDate.getDate() + 9);
-      headers.setMax(curDate.toISOString().split('T')[0]);
+      calendar.setMax(curDate.toISOString().split('T')[0]);
     } else {
-      headers.setEndDate(day?.dateString);
+      calendar.setEndDate(day?.dateString);
       let curDate = new Date(day?.dateString);
-      headers.setCheckOut(
-        day.month < 10
-          ? '0' + day.month + (day.day < 10 ? '.0' + day.day : day.day)
-          : day.month + '.' + day.day,
-      );
-      switch (curDate.getDay()) {
-        case 0:
-          headers.setEndDay('일');
-          break;
-        case 1:
-          headers.setEndDay('월');
-          break;
-        case 2:
-          headers.setEndDay('화');
-          break;
-        case 3:
-          headers.setEndDay('수');
-          break;
-        case 4:
-          headers.setEndDay('목');
-          break;
-        case 5:
-          headers.setEndDay('금');
-          break;
-        default:
-          headers.setEndDay('토');
-      }
+      calendar.setCheckOut(settingDate(day));
+      setDay(curDate, 'end');
       putAutoRange(day);
       putSelectedItem('end', day);
-      headers.setMax('');
+      calendar.setMax('');
     }
   };
 
   const onDayPress = (day: any) => {
-    if (!empty(headers.startDate && !empty(headers.endDate))) {
-      headers.setSuccess(true);
+    if (!empty(calendar.startDate && !empty(calendar.endDate))) {
+      calendar.setSuccess(true);
     } else {
       selectRangCallback(day);
     }
@@ -171,18 +182,18 @@ const TripCalendar = () => {
         }}
         onDayPress={onDayPress}
         markingType="period"
-        markedDates={headers.marked}
+        markedDates={calendar.marked}
         current={new Date().toDateString()}
         pastScrollRange={0}
         futureScrollRange={2}
         scrollEnabled={true}
         minDate={new Date().toISOString().split('T')[0]}
-        maxDate={headers.maxDate}
+        maxDate={calendar.maxDate}
       />
-      {!empty(headers.startDate) && !empty(headers.endDate) ? (
+      {!empty(calendar.startDate) && !empty(calendar.endDate) ? (
         <TripCalendarListSelectedContainerCSS>
           <TripCalendarListSelectedButtonCSS onPress={selectedButtonPress}>
-            <TripCalendarListSelectedButtonTextCSS>{`${headers.startDate}(${headers.startDay}) ~ ${headers.endDate}(${headers.endDay}) · ${headers.night}박`}</TripCalendarListSelectedButtonTextCSS>
+            <TripCalendarListSelectedButtonTextCSS>{`${calendar.startDate}(${calendar.startDay}) ~ ${calendar.endDate}(${calendar.endDay}) · ${calendar.night}박`}</TripCalendarListSelectedButtonTextCSS>
           </TripCalendarListSelectedButtonCSS>
         </TripCalendarListSelectedContainerCSS>
       ) : (
