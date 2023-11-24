@@ -1,17 +1,22 @@
+import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useContext } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import { LayoutContext } from '../../Store/context/AppHeaderContext';
+import HeaderCalLeftClose from '../../common/screens/HeaderCalLeftClose';
 import {
   HeaderLogoCSS,
   HeaderRightCSS,
 } from '../../common/screens/styled/BottomTabStyle';
 import Login from '../../page/Login/Login';
+import TripCalendar from '../../page/TripCalendar/Trip_Calendar';
+import TripGuest from '../../page/TripGuest/Trip_Guest';
 import MainNavigation from './MainNavigation';
 
 const Stack = createStackNavigator();
 
 const StackNavigation = () => {
+  const navigation = useNavigation();
   const mainHeader = useContext(LayoutContext);
 
   const LogoImage = ({ onPress }) => (
@@ -78,6 +83,26 @@ const StackNavigation = () => {
           }}
         />
       </Stack.Group>
+      <Stack.Screen
+        name="TripCalendar"
+        component={TripCalendar}
+        options={{
+          headerShown: mainHeader.visibleCalHead,
+          headerTitle: '날짜 선택',
+          headerTitleAlign: 'center',
+          headerLeft: HeaderCalLeftClose,
+        }}
+      />
+      <Stack.Screen
+        name="TripGuest"
+        component={TripGuest}
+        options={{
+          headerShown: mainHeader.visibleCalHead,
+          headerTitle: '인원수 선택',
+          headerTitleAlign: 'center',
+          headerLeft: HeaderCalLeftClose,
+        }}
+      />
       <Stack.Group>
         {/** 스택 네비게이션에서 메인네비게이션 밖에서 실행되어야할 컴포넌트 페이지들 (ex 약관동의? 회원가입프로세스) */}
       </Stack.Group>

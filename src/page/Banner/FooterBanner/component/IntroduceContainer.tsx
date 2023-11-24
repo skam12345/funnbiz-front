@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExMainBottom } from '../../../../config/constant/sample/Sampe_HyeonHo';
+import { ExMainBottomData } from '../../../../config/constant/sample/Sampe_HyeonHo';
 import {
   IntroduceContainerCSS,
   IntroduceContainerTextCSS,
@@ -9,18 +9,18 @@ const IntroduceContainer = () => {
   return (
     <IntroduceContainerCSS>
       <IntroduceContainerTextCSS>
-        {ExMainBottom?.data?.company} {ExMainBottom?.data?.address}
+        {ExMainBottomData?.data?.company} {ExMainBottomData?.data?.address}
       </IntroduceContainerTextCSS>
       <IntroduceContainerTextCSS>
-        대표이사: {ExMainBottom?.data?.master} │ 사업자등록번호 :
-        {ExMainBottom?.data?.crn}
+        대표이사: {ExMainBottomData?.data?.master} │ 사업자등록번호 :
+        {ExMainBottomData?.data?.crn}
       </IntroduceContainerTextCSS>
       <IntroduceContainerTextCSS>
-        고객센터: {ExMainBottom?.data?.phone?.csc} │ 팩스 :
-        {ExMainBottom?.data?.fax}
+        고객센터: {ExMainBottomData?.data?.phone?.csc} │ 팩스 :
+        {ExMainBottomData?.data?.fax}
       </IntroduceContainerTextCSS>
       <IntroduceContainerTextCSS>
-        {ExMainBottom?.data?.copyright}
+        {ExMainBottomData?.data?.copyright}
       </IntroduceContainerTextCSS>
     </IntroduceContainerCSS>
   );

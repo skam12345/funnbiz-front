@@ -102,4 +102,26 @@ export const empty = (mixed_var: any) => {
   return false;
 };
 
+export const weekendSet = () => {
+  let object = {};
+  const today = new Date();
+  const last = new Date(today.getFullYear(), today.getMonth() + 3, 0);
+  let temp_date = today;
+  while (temp_date.getTime() < last.getTime()) {
+    let tmp = temp_date.getDay();
+    if (tmp === 0) {
+      object[temp_date.toISOString().split('T')[0]] = {
+        textColor: 'red',
+      };
+    } else if (tmp === 6) {
+      object[temp_date.toISOString().split('T')[0]] = {
+        textColor: 'blue',
+      };
+    }
+    temp_date.setDate(temp_date.getDate() + 1);
+  }
+
+  return object;
+};
+
 export const FULL_EQUIRE_SCORE = 5.0;

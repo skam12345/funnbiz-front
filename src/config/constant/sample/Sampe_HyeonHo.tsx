@@ -1,4 +1,4 @@
-export const ExMainBottom = {
+export const ExMainBottomData = {
   error: 0,
   status: 200,
   msg: '성공',
@@ -19,7 +19,7 @@ export const ExMainBottom = {
   },
 };
 
-export const ExCurrentSearch = {
+export const ExCurrentSearchData = {
   error: 0,
   status: 200,
   msg: '성공',
@@ -57,7 +57,7 @@ export const ExCurrentSearch = {
   ],
 };
 
-export const ExPopularSearch = {
+export const ExPopularSearchData = {
   error: 0,
   status: 200,
   msg: '성공',
@@ -66,49 +66,59 @@ export const ExPopularSearch = {
       {
         id: 1,
         content: '서울',
+        idle: true,
       },
       {
         id: 2,
         content: '경주',
+        idle: true,
       },
       {
         id: 3,
         content: '글램핑',
+        idle: true,
       },
       {
         id: 4,
         content: '강릉',
+        idle: false,
       },
       {
         id: 5,
         content: '여수',
+        idle: false,
       },
     ],
     [
       {
         id: 6,
         content: '부산',
+        idle: false,
       },
       {
         id: 7,
         content: '속초',
+        idle: false,
       },
       {
         id: 8,
         content: '전주',
+        idle: false,
       },
       {
         id: 9,
         content: '제주도',
+        idle: false,
       },
       {
         id: 10,
         content: '가평',
+        idle: false,
       },
     ],
   ],
 };
-export const ExPopularTheme = {
+export const ExPopularThemeData = {
   error: 0,
   status: 200,
   msg: '성공',
@@ -155,7 +165,7 @@ export const ExPopularTheme = {
     },
   ],
 };
-export const ExSearchList = {
+export const ExSearchListData = {
   error: 0,
   status: 200,
   msg: '성공',

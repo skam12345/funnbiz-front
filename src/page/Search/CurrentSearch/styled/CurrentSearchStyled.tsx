@@ -1,12 +1,13 @@
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import styled from 'styled-components';
+import styles from 'styled-components/native';
 import { d_height } from '../../../../config/constant';
 
 export const CurrentSearchCSS = styled(View)`
   width: 100%;
-  height: ${d_height * 0.2}px;
+  height: ${d_height * 0.18}px;
   background-color: white;
-  padding-left: 25px;
+  padding-left: 15px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -26,7 +27,7 @@ export const CurrentSearchRollingViewCSS = styled(View)`
   margin-bottom: 8px;
 `;
 
-export const CurrentSearchContentDataContainerCSS = styled(View)`
+export const CurrentSearchContentDataContainerCSS = styles.View`
   width: 160px;
   height: 80px;
   border-radius: 8px;
@@ -61,7 +62,7 @@ export const CurrentSearchContentDataTextCSS = styled(Text)`
   color: black;
 `;
 
-export const CurrentSearchContentDataCloseBoxCSS = styled(Pressable)`
+export const CurrentSearchContentDataCloseBoxCSS = styles.Pressable`
   position: absolute;
   right: 5px;
   width: 25px;

@@ -1,6 +1,7 @@
 import { Pressable, Text, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styled from 'styled-components';
+import styles from 'styled-components/native';
 import { d_height } from '../../../../config/constant';
 
 export const SearchContentContainerCSS = styled(View)`
@@ -16,7 +17,7 @@ export const SearchContentContainerCSS = styled(View)`
 
 export const SearchContentSearchBoxCSS = styled(TextInput)`
   width: 100%;
-  height: ${(d_height * 0.25) / 4}px;
+  height: ${(d_height * 0.2) / 4}px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-width: 1px;
@@ -36,7 +37,7 @@ export const SearchContentIconBoxCSS = styled(View)`
   position: absolute;
   left: 10px;
   width: 10%;
-  height: ${(d_height * 0.25) / 4}px;
+  height: ${(d_height * 0.2) / 4}px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,7 +48,7 @@ export const SearchContentSearchBoxIconCSS = styled(Icon)``;
 
 export const SearchContentCalAndGuestBoxCSS = styled(View)`
   width: 100%;
-  height: ${(d_height * 0.25) / 4}px;
+  height: ${(d_height * 0.2) / 4}px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: #726b6b;
@@ -57,7 +58,7 @@ export const SearchContentCalAndGuestBoxCSS = styled(View)`
   align-items: center;
 `;
 
-export const SearchContentCalBoxCSS = styled(View)`
+export const SearchContentCalBoxCSS = styles.Pressable`
   width: 50%;
   height: 100%;
   display: flex;
@@ -99,7 +100,7 @@ export const SearchContentCalTextCSS = styled(Text)`
   color: #a1a1a1;
 `;
 
-export const SearchContentGuestBoxCSS = styled(View)`
+export const SearchContentGuestBoxCSS = styles.Pressable`
   width: 50%;
   height: 100%;
   display: flex;

@@ -65,7 +65,7 @@ const MainNavigation = () => {
         }}
       />
       <Tab.Screen
-        name="검색"
+        name="Search"
         component={Searching}
         options={{
           tabBarIcon: () => <CusttomTabItems />,

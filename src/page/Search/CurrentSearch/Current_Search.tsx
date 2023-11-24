@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { FlatList } from 'react-native';
-import { ExCurrentSearch } from '../../../config/constant/sample/Sampe_HyeonHo';
+import { ExCurrentSearchData } from '../../../config/constant/sample/Sampe_HyeonHo';
 import {
   CurrentSearchCSS,
   CurrentSearchContentDataCloseBoxCSS,
@@ -14,6 +14,21 @@ import {
 } from './styled/CurrentSearchStyled';
 
 const CurrentSearch = () => {
+  const [close, setClose] = useState(ExCurrentSearchData.data);
+  let list = ExCurrentSearchData.data;
+  const closeCurrent = useCallback(
+    (id: number) => {
+      for (let i = 0; i < list.length; i++) {
+        if (i === list.indexOf(list.filter(sort => sort.id === id)[0])) {
+          list.splice(i, 1);
+          break;
+        }
+      }
+      setClose([...list]);
+    },
+    [close],
+  );
+
   return (
     <CurrentSearchCSS>
       <CurrentSearchTextCSS>최근 검색</CurrentSearchTextCSS>
@@ -21,7 +36,7 @@ const CurrentSearch = () => {
         <FlatList
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          data={ExCurrentSearch.data}
+          data={close}
           renderItem={data => {
             return (
               <CurrentSearchContentDataContainerCSS>
@@ -36,7 +51,9 @@ const CurrentSearch = () => {
                     {data.item.guest}
                   </CurrentSearchContentDataTextCSS>
                 </CurrentSearchContentDataTextBoxCSS>
-                <CurrentSearchContentDataCloseBoxCSS>
+                <CurrentSearchContentDataCloseBoxCSS
+                  onPress={() => closeCurrent(data.item.id)}
+                >
                   <CurrentSearchContentDataCloseTextCSS>
                     ×
                   </CurrentSearchContentDataCloseTextCSS>
