@@ -2,6 +2,8 @@ import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useContext } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
+import HeaderSearchLeftBack from '../../Header/Left/HeaderSearchLeftBack';
+import HeaderSearchBox from '../../Header/title/HeaderSearchBox';
 import { LayoutContext } from '../../Store/context/AppHeaderContext';
 import HeaderCalLeftClose from '../../common/screens/HeaderCalLeftClose';
 import {
@@ -9,6 +11,7 @@ import {
   HeaderRightCSS,
 } from '../../common/screens/styled/BottomTabStyle';
 import Login from '../../page/Login/Login';
+import SearchList from '../../page/SearchList/Search_List';
 import TripCalendar from '../../page/TripCalendar/Trip_Calendar';
 import TripGuest from '../../page/TripGuest/Trip_Guest';
 import MainNavigation from './MainNavigation';
@@ -101,6 +104,16 @@ const StackNavigation = () => {
           headerTitle: '인원수 선택',
           headerTitleAlign: 'center',
           headerLeft: HeaderCalLeftClose,
+        }}
+      />
+      <Stack.Screen
+        name="SearchList"
+        component={SearchList}
+        options={{
+          headerShown: mainHeader.visibleSearchListHead,
+          headerTitle: HeaderSearchBox,
+          headerTitleAlign: 'center',
+          headerLeft: HeaderSearchLeftBack,
         }}
       />
       <Stack.Group>

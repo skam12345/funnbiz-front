@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
-import { LayoutContext } from '../Store/context/AppHeaderContext';
+import { LayoutContext } from '../../Store/context/AppHeaderContext';
 const Pressable = styled.Pressable``;
 const IconContainer = styled.View<{ pressed: boolean }>`
   opacity: ${({ pressed }) => (pressed ? 0.55 : 1)};
@@ -23,8 +23,8 @@ const HeaderLeftGoBack = (navigation: any) => {
       {({ pressed }) => (
         <IconContainer pressed={pressed}>
           <Image
-            resizeMode={'contain'}
-            source={require('../assets/image/header/back.png')}
+            style={{ width: 25, height: 25 }}
+            source={require('../../assets/image/header/back.png')}
           />
         </IconContainer>
       )}

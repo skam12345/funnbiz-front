@@ -45,6 +45,14 @@ const SearchBox = () => {
     headers.setVisibleTabHead(false);
     navigation.navigate('TripGuest');
   };
+
+  const goSearchList = () => {
+    if (headers.visibleTabHead) {
+      headers.setVisibleSearchListHead(true);
+    }
+    headers.setVisibleTabHead(false);
+    navigation.navigate('SearchList');
+  };
   return (
     <SearchBoxCSS>
       <SearchContentContainerCSS>
@@ -88,7 +96,7 @@ const SearchBox = () => {
             </SearchContentGuestTextCSS>
           </SearchContentGuestBoxCSS>
         </SearchContentCalAndGuestBoxCSS>
-        <SearchContentButtonBoxCSS>
+        <SearchContentButtonBoxCSS onPress={goSearchList}>
           <SearchContentButtonTextCSS>검색</SearchContentButtonTextCSS>
         </SearchContentButtonBoxCSS>
       </SearchContentContainerCSS>

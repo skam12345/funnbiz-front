@@ -1,4 +1,4 @@
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styled from 'styled-components';
 import styles from 'styled-components/native';
@@ -120,7 +120,7 @@ export const SearchContentGuestTextCSS = styled(Text)`
   color: black;
 `;
 
-export const SearchContentButtonBoxCSS = styled(Pressable)`
+export const SearchContentButtonBoxCSS = styles.TouchableOpacity`
   width: 100%;
   flex: 1;
   display: flex;

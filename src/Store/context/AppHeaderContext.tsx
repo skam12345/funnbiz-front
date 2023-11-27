@@ -13,6 +13,7 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
   const [visibleMain, setVisibleMain] = useState(true);
   const [visibleTabHead, setVisibleTabHead] = useState(false);
   const [visibleCalHead, setVisibleCalHead] = useState(false);
+  const [visibleSearchListHead, setVisibleSearchListHead] = useState(false);
 
   const contextValue = {
     visibleMain,
@@ -21,6 +22,8 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
     setVisibleTabHead,
     visibleCalHead,
     setVisibleCalHead,
+    visibleSearchListHead,
+    setVisibleSearchListHead,
   };
 
   return (
